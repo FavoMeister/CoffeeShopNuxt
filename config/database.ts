@@ -6,7 +6,7 @@ const dbConfig = defineConfig({
   /**
    * Default connection used for all queries.
    */
-  connection: 'mysql',
+  connection: 'sqlite',
 
   connections: {
     /**
@@ -73,7 +73,7 @@ const dbConfig = defineConfig({
      * MySQL / MariaDB connection.
      * Install package to switch: npm install mysql2
      */
-    mysql: {
+    /* mysql: {
      client: 'mysql2',
       connection: {
         host: env.get('DB_HOST'),
@@ -87,7 +87,7 @@ const dbConfig = defineConfig({
         paths: ['database/migrations'],
       },
       debug: app.inDev,
-    },
+    }, */
 
     /**
      * Microsoft SQL Server connection.
