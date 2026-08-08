@@ -33,7 +33,7 @@ export class AuthAccessTokenSchema extends BaseModel {
 }
 
 export class ProductSchema extends BaseModel {
-  static $columns = ['category', 'createdAt', 'description', 'id', 'imageUrl', 'name', 'price', 'stock', 'tax', 'updatedAt'] as const
+  static $columns = ['category', 'createdAt', 'description', 'id', 'imageUrl', 'name', 'price', 'reference', 'stock', 'tax', 'updatedAt'] as const
   $columns = ProductSchema.$columns
   @column()
   declare category: string | null
@@ -49,6 +49,8 @@ export class ProductSchema extends BaseModel {
   declare name: string | null
   @column()
   declare price: number | null
+  @column()
+  declare reference: string
   @column()
   declare stock: number | null
   @column()

@@ -10,6 +10,7 @@
 import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
 import { controllers } from '#generated/controllers'
+import ProductsController from '#controllers/products_controller'
 
 router.get('/', () => {
   return { hello: 'world' }
@@ -17,6 +18,15 @@ router.get('/', () => {
 
 router
   .group(() => {
+    router
+      .group(() => {
+        router.get('/', [ProductsController, 'index'])
+        router.post('/', [ProductsController, 'store'])
+        router.get('/:id', [ProductsController, 'show'])
+      })
+      .prefix('products')
+      .as('products')
+    
     router
       .group(() => {
         router.post('signup', [controllers.NewAccount, 'store'])

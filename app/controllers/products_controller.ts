@@ -15,7 +15,7 @@ export default class ProductsController {
       all = await Product.all()
     }
     return response.json({
-      message: "Operaci'on Exitosa",
+      message: "Operación Exitosa index",
       data: all
     })
   }
@@ -24,15 +24,18 @@ export default class ProductsController {
    * Handle form submission for the create action
    */
   async store({ request, response }: HttpContext) {
-    const data = request.all(); // we can use only and except
-    const exist = await Product.query().where('reference', data.reference);
+    const data = request.all(); // we can use only() and except()
+    const exist = await Product.query().where('reference', data.reference).first();
     if(!exist){
       const model =  await Product.create(data);
       return response.json({
-        message: "Operaci'on exitosa",
+        message: "Operación exitosa",
         data: model
       })
     }
+    return response.badRequest({
+      message: "Operación no exitosa"
+    });
   }
 
   /**
@@ -41,7 +44,7 @@ export default class ProductsController {
   async show({ params, response }: HttpContext) {
     const data = await Product.findByOrFail(params.id);
     return response.json({
-      message: "Operaci'on exitosa",
+      message: "Operación exitosa",
       data
     });
   }
