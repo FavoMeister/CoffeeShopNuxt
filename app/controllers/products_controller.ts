@@ -42,7 +42,7 @@ export default class ProductsController {
    * Show individual record
    */
   async show({ params, response }: HttpContext) {
-    const data = await Product.findByOrFail(params.id);
+    const data = await Product.findByOrFail("id", params.id);
     return response.json({
       message: "Operación exitosa",
       data
@@ -53,7 +53,7 @@ export default class ProductsController {
    * Handle form submission for the edit action
    */
   async update({ params, request, response }: HttpContext) {
-    let product = await Product.findByOrFail(params.id);
+    let product = await Product.findByOrFail("id", params.id);
     if(product){
       const data = request.except(['id']);
       product.name = data.name;

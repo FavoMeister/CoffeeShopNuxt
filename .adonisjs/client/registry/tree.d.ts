@@ -7,6 +7,8 @@ export interface ApiDefinition {
       index: typeof routes['products.products.index']
       store: typeof routes['products.products.store']
       show: typeof routes['products.products.show']
+      update: typeof routes['products.products.update']
+      destroy: typeof routes['products.products.destroy']
     }
   }
   auth: {

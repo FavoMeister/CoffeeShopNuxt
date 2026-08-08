@@ -23,6 +23,8 @@ router
         router.get('/', [ProductsController, 'index'])
         router.post('/', [ProductsController, 'store'])
         router.get('/:id', [ProductsController, 'show'])
+        router.post('/:id', [ProductsController, 'update'])
+        router.delete('/:id', [ProductsController, 'destroy'])
       })
       .prefix('products')
       .as('products')
