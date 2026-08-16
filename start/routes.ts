@@ -11,6 +11,7 @@ import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
 import { controllers } from '#generated/controllers'
 import ProductsController from '#controllers/products_controller'
+import OrdersController from '#controllers/orders_controller'
 
 router.get('/', () => {
   return { hello: 'world' }
@@ -28,7 +29,11 @@ router
       })
       .prefix('products')
       .as('products')
-    
+    router
+      .group(() => {
+        router.resource('orders', OrdersController).apiOnly()
+      })
+      
     router
       .group(() => {
         router.post('signup', [controllers.NewAccount, 'store'])
