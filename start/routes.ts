@@ -19,7 +19,53 @@ router.get('/', () => {
 
 router
   .group(() => {
+    /*
+    |--------------------------------------------------------------------------
+    | Rutas Públicas (Lectura)
+    |--------------------------------------------------------------------------
+    */
+    router.group(() => {
+      // Products
+      router.get('products', [ProductsController, 'index'])
+      router.get('products/:id', [ProductsController, 'show'])
+
+      // Orders
+      router.get('orders', [OrdersController, 'index'])
+      router.get('orders/:id', [OrdersController, 'show'])
+    })
+    /*
+    |--------------------------------------------------------------------------
+    | Rutas Protegidas (Escritura, Edición y Borrado)
+    |--------------------------------------------------------------------------
+    */
     router
+      .group(() => {
+        // Products
+        router.post('products', [ProductsController, 'store'])
+        router.put('products/:id', [ProductsController, 'update']) // Se recomienda PUT o PATCH para updates
+        router.delete('products/:id', [ProductsController, 'destroy'])
+
+        // Orders
+        router.post('orders', [OrdersController, 'store'])
+        router.put('orders/:id', [OrdersController, 'update'])
+        router.delete('orders/:id', [OrdersController, 'destroy'])
+
+        // Profile / Account
+        router
+          .group(() => {
+            router.get('profile', [controllers.Profile, 'show'])
+            router.post('logout', [controllers.AccessTokens, 'destroy'])
+          })
+          .prefix('account')
+          .as('profile')
+      })
+      .use(
+        middleware.auth({
+          guards: ['api'], // Se especifica explícitamente el guard 'api'
+        })
+      )
+
+    /*router
       .group(() => {
         router.get('/', [ProductsController, 'index'])
         router.post('/', [ProductsController, 'store'])
@@ -32,8 +78,12 @@ router
     router
       .group(() => {
         router.resource('orders', OrdersController).apiOnly()
-      })
-      
+      })*/
+    /*
+    |--------------------------------------------------------------------------
+    | Autenticación
+    |--------------------------------------------------------------------------
+    */
     router
       .group(() => {
         router.post('signup', [controllers.NewAccount, 'store'])
@@ -42,13 +92,13 @@ router
       .prefix('auth')
       .as('auth')
 
-    router
+    /*router
       .group(() => {
         router.get('profile', [controllers.Profile, 'show'])
         router.post('logout', [controllers.AccessTokens, 'destroy'])
       })
       .prefix('account')
       .as('profile')
-      .use(middleware.auth())
+      .use(middleware.auth())*/
   })
   .prefix('/api/v1')

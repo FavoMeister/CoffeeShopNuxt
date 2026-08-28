@@ -3,28 +3,18 @@ import type { routes } from './index.ts'
 
 export interface ApiDefinition {
   products: {
-    products: {
-      index: typeof routes['products.products.index']
-      store: typeof routes['products.products.store']
-      show: typeof routes['products.products.show']
-      update: typeof routes['products.products.update']
-      destroy: typeof routes['products.products.destroy']
-    }
+    index: typeof routes['products.index']
+    show: typeof routes['products.show']
+    store: typeof routes['products.store']
+    update: typeof routes['products.update']
+    destroy: typeof routes['products.destroy']
   }
   orders: {
     index: typeof routes['orders.index']
-    store: typeof routes['orders.store']
     show: typeof routes['orders.show']
+    store: typeof routes['orders.store']
     update: typeof routes['orders.update']
     destroy: typeof routes['orders.destroy']
-  }
-  auth: {
-    newAccount: {
-      store: typeof routes['auth.new_account.store']
-    }
-    accessTokens: {
-      store: typeof routes['auth.access_tokens.store']
-    }
   }
   profile: {
     profile: {
@@ -32,6 +22,14 @@ export interface ApiDefinition {
     }
     accessTokens: {
       destroy: typeof routes['profile.access_tokens.destroy']
+    }
+  }
+  auth: {
+    newAccount: {
+      store: typeof routes['auth.new_account.store']
+    }
+    accessTokens: {
+      store: typeof routes['auth.access_tokens.store']
     }
   }
 }
