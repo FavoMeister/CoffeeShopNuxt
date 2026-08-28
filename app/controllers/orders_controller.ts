@@ -7,13 +7,16 @@ export default class OrdersController {
    */
   async index({ response, request }: HttpContext) {
     const page = request.input('page');
-    let all = [];
+    const limit = request.input('limit', 10) // Valor por defecto si no viene limit
+    
+    let all: any
+
     if (page) {
-      const limit = request.input('limit');
       all = await Order.query().paginate(page, limit)
     } else {
       all = await Order.all()
     }
+
     return response.json({
       message: "Operación Exitosa index",
       data: all
@@ -41,7 +44,7 @@ export default class OrdersController {
    * Show individual record
    */
   async show({ params, response }: HttpContext) {
-    const data = await Order.findByOrFail("id", params.id);
+    const data = await Order.findOrFail(params.id);
     return response.json({
       message: "Operación exitosa",
       data
@@ -52,15 +55,19 @@ export default class OrdersController {
    * Handle form submission for the edit action
    */
   async update({ params, request, response }: HttpContext) {
-    let order = await Order.findByOrFail("id", params.id);
+    let order = await Order.findOrFail(params.id)
+
     if (order) {
-      const data = request.except(['id']);
+      /* const data = request.except(['id']);
       order.user = data.user;
       order.client = data.client;
       order.table = data.table;
       order.detail = data.detail;
       order.total = data.total;
-      order.save();
+      order.save(); */
+      const data = request.except(['id'])
+      order.merge(data)
+      await order.save()
 
       return response.json({
         message: "Orden fue actualizada exitosamente",
@@ -77,9 +84,9 @@ export default class OrdersController {
    * Delete record
    */
   async destroy({ params, response }: HttpContext) {
-    let order = await Order.findByOrFail(params.id);
+    const order = await Order.findOrFail(params.id)
     if (order) {
-      order.delete();
+      await order.delete();
       return response.json({
         message: "Orden eliminada",
         data: order

@@ -67,6 +67,66 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'orders.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/orders'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'orders.store': {
+    methods: ["POST"]
+    pattern: '/api/v1/orders'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'orders.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/orders/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'orders.update': {
+    methods: ["PUT","PATCH"]
+    pattern: '/api/v1/orders/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'orders.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/v1/orders/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'auth.new_account.store': {
     methods: ["POST"]
     pattern: '/api/v1/auth/signup'
