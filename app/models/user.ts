@@ -21,6 +21,9 @@ export default class User extends compose(UserSchema, withAuthFinder(hash)) {
   @column()
   declare role: string
 
+  @column({ serializeAs: null })
+  declare password: string
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: any
 

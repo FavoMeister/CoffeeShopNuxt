@@ -127,6 +127,30 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'auth.me': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/me'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'auth.logout': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/logout'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'profile.profile.show': {
     methods: ["GET","HEAD"]
     pattern: '/api/v1/account/profile'

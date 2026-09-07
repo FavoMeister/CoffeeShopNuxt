@@ -16,20 +16,22 @@ export interface ApiDefinition {
     update: typeof routes['orders.update']
     destroy: typeof routes['orders.destroy']
   }
+  auth: {
+    me: typeof routes['auth.me']
+    logout: typeof routes['auth.logout']
+    newAccount: {
+      store: typeof routes['auth.new_account.store']
+    }
+    accessTokens: {
+      store: typeof routes['auth.access_tokens.store']
+    }
+  }
   profile: {
     profile: {
       show: typeof routes['profile.profile.show']
     }
     accessTokens: {
       destroy: typeof routes['profile.access_tokens.destroy']
-    }
-  }
-  auth: {
-    newAccount: {
-      store: typeof routes['auth.new_account.store']
-    }
-    accessTokens: {
-      store: typeof routes['auth.access_tokens.store']
     }
   }
 }

@@ -14,6 +14,8 @@ export type ScannedRoutes = {
     'orders.store': { paramsTuple?: []; params?: {} }
     'orders.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'orders.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'auth.me': { paramsTuple?: []; params?: {} }
+    'auth.logout': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
     'profile.access_tokens.destroy': { paramsTuple?: []; params?: {} }
     'auth.new_account.store': { paramsTuple?: []; params?: {} }
@@ -24,6 +26,8 @@ export type ScannedRoutes = {
     'products.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'orders.index': { paramsTuple?: []; params?: {} }
     'orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'auth.me': { paramsTuple?: []; params?: {} }
+    'auth.logout': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
@@ -31,6 +35,8 @@ export type ScannedRoutes = {
     'products.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'orders.index': { paramsTuple?: []; params?: {} }
     'orders.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'auth.me': { paramsTuple?: []; params?: {} }
+    'auth.logout': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
   }
   POST: {

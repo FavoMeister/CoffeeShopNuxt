@@ -12,6 +12,7 @@ import router from '@adonisjs/core/services/router'
 import { controllers } from '#generated/controllers'
 import ProductsController from '#controllers/products_controller'
 import OrdersController from '#controllers/orders_controller'
+import AuthController from '#controllers/auth_controller'
 
 router.get('/', () => {
   return { hello: 'world' }
@@ -49,6 +50,10 @@ router
         router.post('orders', [OrdersController, 'store'])
         router.put('orders/:id', [OrdersController, 'update'])
         router.delete('orders/:id', [OrdersController, 'destroy'])
+
+        //Auth
+        router.get('me', [AuthController, 'me'])
+        router.get('logout', [AuthController, 'logout'])
 
         // Profile / Account
         router

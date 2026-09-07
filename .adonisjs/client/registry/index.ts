@@ -66,6 +66,18 @@ const routes = {
     tokens: [{"old":"/api/v1/orders/:id","type":0,"val":"api","end":""},{"old":"/api/v1/orders/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/orders/:id","type":0,"val":"orders","end":""},{"old":"/api/v1/orders/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['orders.destroy']['types'],
   },
+  'auth.me': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/me',
+    tokens: [{"old":"/api/v1/me","type":0,"val":"api","end":""},{"old":"/api/v1/me","type":0,"val":"v1","end":""},{"old":"/api/v1/me","type":0,"val":"me","end":""}],
+    types: placeholder as Registry['auth.me']['types'],
+  },
+  'auth.logout': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/logout',
+    tokens: [{"old":"/api/v1/logout","type":0,"val":"api","end":""},{"old":"/api/v1/logout","type":0,"val":"v1","end":""},{"old":"/api/v1/logout","type":0,"val":"logout","end":""}],
+    types: placeholder as Registry['auth.logout']['types'],
+  },
   'profile.profile.show': {
     methods: ["GET","HEAD"],
     pattern: '/api/v1/account/profile',
