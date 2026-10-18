@@ -59,7 +59,7 @@ export default class ProductsController {
       product.name = data.name;
       product.reference = data.reference;
       product.description = data.description;
-      product.image_url = data.image_url;
+      product.image_url = data.imageUrl;
       product.category = data.category;
       product.price = data.price;
       product.tax = data.tax;
