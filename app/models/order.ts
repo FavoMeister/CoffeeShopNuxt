@@ -13,6 +13,9 @@ export default class Order extends BaseModel {
     @column()
     declare table: string
 
+    @column()
+    declare discount: number
+
     @column({
         // Convierte el objeto/arreglo a String JSON antes de insertar en SQLite
         prepare: (value: any) => (value ? JSON.stringify(value) : null),

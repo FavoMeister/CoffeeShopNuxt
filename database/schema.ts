@@ -33,7 +33,7 @@ export class AuthAccessTokenSchema extends BaseModel {
 }
 
 export class OrderSchema extends BaseModel {
-  static $columns = ['client', 'createdAt', 'detail', 'id', 'table', 'total', 'updatedAt', 'user'] as const
+  static $columns = ['client', 'createdAt', 'detail', 'discount', 'id', 'table', 'total', 'updatedAt', 'user'] as const
   $columns = OrderSchema.$columns
   @column()
   declare client: string | null
@@ -41,6 +41,8 @@ export class OrderSchema extends BaseModel {
   declare createdAt: DateTime | null
   @column()
   declare detail: any | null
+  @column()
+  declare discount: number | null
   @column({ isPrimary: true })
   declare id: number
   @column()
