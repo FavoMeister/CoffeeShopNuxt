@@ -10,7 +10,7 @@ export default class extends BaseSchema {
       table.string('client').nullable()
       table.string('table').nullable()
       table.json('detail')
-      table.decimal('discount', 10,2).nullable()
+      //table.decimal('discount', 10,2).nullable()
       table.decimal('total', 10,2).nullable()
       table.timestamp('created_at')
       table.timestamp('updated_at')
