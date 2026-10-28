@@ -27,12 +27,12 @@ router
     */
     router.group(() => {
       // Products
-      router.get('products', [ProductsController, 'index'])
-      router.get('products/:id', [ProductsController, 'show'])
+      router.get('/products', [ProductsController, 'index'])
+      router.get('/products/:id', [ProductsController, 'show'])
 
       // Orders
-      router.get('orders', [OrdersController, 'index'])
-      router.get('orders/:id', [OrdersController, 'show'])
+      router.get('/orders', [OrdersController, 'index'])
+      router.get('/orders/:id', [OrdersController, 'show'])
     })
     /*
     |--------------------------------------------------------------------------
@@ -42,26 +42,26 @@ router
     router
       .group(() => {
         // Products
-        router.post('products', [ProductsController, 'store'])
-        router.put('products/:id', [ProductsController, 'update']) // Se recomienda PUT o PATCH para updates
-        router.delete('products/:id', [ProductsController, 'destroy'])
+        router.post('/products', [ProductsController, 'store'])
+        router.put('/products/:id', [ProductsController, 'update']) // Se recomienda PUT o PATCH para updates
+        router.delete('/products/:id', [ProductsController, 'destroy'])
 
         // Orders
-        router.post('orders', [OrdersController, 'store'])
-        router.put('orders/:id', [OrdersController, 'update'])
-        router.delete('orders/:id', [OrdersController, 'destroy'])
+        router.post('/orders', [OrdersController, 'store'])
+        router.put('/orders/:id', [OrdersController, 'update'])
+        router.delete('/orders/:id', [OrdersController, 'destroy'])
 
         //Auth
-        router.get('me', [AuthController, 'me'])
-        router.get('logout', [AuthController, 'logout'])
+        router.get('/me', [AuthController, 'me'])
+        router.get('/logout', [AuthController, 'logout'])
 
         // Profile / Account
         router
           .group(() => {
-            router.get('profile', [controllers.Profile, 'show'])
-            router.post('logout', [controllers.AccessTokens, 'destroy'])
+            router.get('/profile', [controllers.Profile, 'show'])
+            router.post('/logout', [controllers.AccessTokens, 'destroy'])
           })
-          .prefix('account')
+          .prefix('/account')
           .as('profile')
       })
       .use(
@@ -91,10 +91,10 @@ router
     */
     router
       .group(() => {
-        router.post('signup', [controllers.NewAccount, 'store'])
-        router.post('login', [controllers.AccessTokens, 'store'])
+        router.post('/signup', [controllers.NewAccount, 'store'])
+        router.post('/login', [controllers.AccessTokens, 'store'])
       })
-      .prefix('auth')
+      .prefix('/auth')
       .as('auth')
 
     /*router

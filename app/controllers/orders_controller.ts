@@ -6,20 +6,32 @@ export default class OrdersController {
    * Display a list of resource
    */
   async index({ response, request }: HttpContext) {
-    const page = request.input('page');
-    const limit = request.input('limit', 10) // Valor por defecto si no viene limit
+    const page = request.input('page')
+    const limit = request.input('limit', 10)  // Valor por defecto si no viene limit
+    const search = request.input('search') || request.input('q')
     
-    let all: any
+    const query = Order.query()
+    
+    // Si el cliente envía un término de búsqueda, filtramos por nombre o descripción
+    if (search) {
+      query.where((builder) => {
+        builder
+          .where('id', 'LIKE', `%${search}%`)
+          //.orWhere('description', 'LIKE', `%${search}%`)
+      })
+    }
+
+    let result;
 
     if (page) {
-      all = await Order.query().paginate(page, limit)
+      result = await query.paginate(page, limit)
     } else {
-      all = await Order.all()
+      result = await query.exec()
     }
 
     return response.json({
-      message: "Operación Exitosa index",
-      data: all
+      message: 'Operación Exitosa index',
+      data: result,
     })
   }
 

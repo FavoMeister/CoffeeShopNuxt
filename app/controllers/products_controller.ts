@@ -5,7 +5,7 @@ export default class ProductsController {
   /**
    * Display a list of resource
    */
-  async index({ response, request}: HttpContext) {
+  /* async index({ response, request}: HttpContext) {
     const page = request.input('page');
     let all = [];
     if(page){
@@ -17,6 +17,38 @@ export default class ProductsController {
     return response.json({
       message: "Operación Exitosa index",
       data: all
+    })
+  } */
+
+  async index({ request, response }: HttpContext) {
+    const page = request.input('page')
+    const limit = request.input('limit', 10)
+    const search = request.input('search') || request.input('q') // Captura el término de búsqueda
+
+    // Creamos la consulta base
+    const query = Product.query()
+
+    // Si el cliente envía un término de búsqueda, filtramos por nombre o descripción
+    if (search) {
+      query.where((builder) => {
+        builder
+          .where('name', 'LIKE', `%${search}%`)
+          .orWhere('description', 'LIKE', `%${search}%`)
+      })
+    }
+
+    let result
+
+    // Si se pasa el parámetro page, paginamos los resultados
+    if (page) {
+      result = await query.paginate(page, limit)
+    } else {
+      result = await query.exec()
+    }
+
+    return response.json({
+      message: 'Operación Exitosa index',
+      data: result,
     })
   }
 
@@ -81,9 +113,9 @@ export default class ProductsController {
    * Delete record
    */
   async destroy({ params, response }: HttpContext) {
-    let product = await Product.findByOrFail(params.id);
+    const product = await Product.findOrFail(params.id);
     if(product){
-      product.delete();
+      await product.delete();
       return response.json({
         message: "Operación exitosa",
         data: product
